@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Cake</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+
+margin:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+background:linear-gradient(135deg,#ff9ec7,#ffcce5,#fff0f7);
+
+overflow:hidden;
+
+font-family:Poppins,sans-serif;
+
+}
+
+.container{
+
+text-align:center;
+
+}
+
+h1{
+
+color:#ff0066;
+
+margin-bottom:40px;
+
+}
+
+.cake{
+
+position:relative;
+
+width:250px;
+
+margin:auto;
+
+}
+
+.layer1{
+
+width:250px;
+
+height:70px;
+
+background:#ff66a3;
+
+border-radius:15px;
+
+}
+
+.layer2{
+
+width:200px;
+
+height:60px;
+
+background:#ff85b5;
+
+margin:auto;
+
+margin-top:-10px;
+
+border-radius:15px;
+
+}
+
+.layer3{
+
+width:150px;
+
+height:50px;
+
+background:#ffb3d1;
+
+margin:auto;
+
+margin-top:-10px;
+
+border-radius:15px;
+
+}
+
+.candle{
+
+width:12px;
+
+height:45px;
+
+background:white;
+
+position:absolute;
+
+top:-45px;
+
+border-radius:5px;
+
+}
+
+.flame{
+
+width:15px;
+
+height:20px;
+
+background:orange;
+
+border-radius:50%;
+
+position:absolute;
+
+top:-18px;
+
+left:-2px;
+
+animation:flicker .5s infinite alternate;
+
+}
+
+@keyframes flicker{
+
+from{
+
+transform:scale(1);
+
+}
+
+to{
+
+transform:scale(.8);
+
+}
+
+}
+
+#msg{
+
+display:none;
+
+margin-top:40px;
+
+font-size:26px;
+
+color:#ff0066;
+
+font-weight:bold;
+
+}
+
+button{
+
+display:none;
+
+margin-top:30px;
+
+padding:15px 35px;
+
+border:none;
+
+border-radius:30px;
+
+font-size:20px;
+
+background:#ff4081;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎂 Tap Every Candle 🎂</h1>
+
+<div class="cake">
+
+<div class="candle" style="left:45px;">
+<div class="flame"></div>
+</div>
+
+<div class="candle" style="left:90px;">
+<div class="flame"></div>
+</div>
+
+<div class="candle" style="left:120px;">
+<div class="flame"></div>
+</div>
+
+<div class="candle" style="left:160px;">
+<div class="flame"></div>
+</div>
+
+<div class="candle" style="left:205px;">
+<div class="flame"></div>
+</div>
+
+<div class="layer3"></div>
+
+<div class="layer2"></div>
+
+<div class="layer1"></div>
+
+</div>
+
+<div id="msg">
+
+🎉 Amazing! You made a birthday wish! ❤️
+
+</div>
+
+<button id="nextBtn">
+
+Continue 💌
+
+</button>
+
+<script>
+
+let flames=document.querySelectorAll(".flame");
+
+let blown=0;
+
+flames.forEach(function(f){
+
+f.onclick=function(){
+
+if(f.style.visibility=="hidden") return;
+
+f.style.visibility="hidden";
+
+blown++;
+
+if(blown==5){
+
+document.getElementById("msg").style.display="block";
+
+document.getElementById("nextBtn").style.display="inline-block";
+
+}
+
+}
+
+});
+
+document.getElementById("nextBtn").onclick=function(){
+
+window.location.href="letter.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

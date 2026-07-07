@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Mirror</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1a0033,#32004d,#4d0066);
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+.container{
+padding:20px;
+}
+
+.mirror{
+width:220px;
+height:320px;
+margin:auto;
+border-radius:50%;
+border:8px solid gold;
+background:linear-gradient(#8fd3ff,#ffffff);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:90px;
+cursor:pointer;
+animation:glow 2s infinite alternate;
+box-shadow:0 0 30px gold;
+}
+
+@keyframes glow{
+from{box-shadow:0 0 20px gold;}
+to{box-shadow:0 0 60px #fff176;}
+}
+
+#text{
+margin-top:30px;
+font-size:24px;
+display:none;
+line-height:1.7;
+}
+
+button{
+display:none;
+margin-top:30px;
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✨ The Magic Mirror ✨</h1>
+
+<br>
+
+<div class="mirror" id="mirror">
+🪞
+</div>
+
+<div id="text">
+Today is all about celebrating someone truly special... ❤️<br><br>
+Are you ready for your next surprise?
+</div>
+
+<button id="next">
+Continue 🎂
+</button>
+
+</div>
+
+<script>
+
+const mirror=document.getElementById("mirror");
+const text=document.getElementById("text");
+const next=document.getElementById("next");
+
+mirror.onclick=function(){
+
+mirror.innerHTML="✨";
+
+mirror.style.background="white";
+
+text.style.display="block";
+
+next.style.display="inline-block";
+
+}
+
+next.onclick=function(){
+
+window.location.href="cake.html";
+
+}
+
+</script>
+
+</body>
+</html>

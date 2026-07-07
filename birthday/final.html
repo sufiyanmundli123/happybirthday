@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Baba ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff4d88,#ff80ab,#ffd6e7);
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.container{
+padding:20px;
+z-index:10;
+}
+
+h1{
+font-family:'Dancing Script',cursive;
+font-size:70px;
+animation:glow 2s infinite alternate;
+}
+
+h2{
+margin:20px 0;
+font-size:34px;
+}
+
+p{
+font-size:22px;
+line-height:1.8;
+max-width:700px;
+margin:auto;
+}
+
+button{
+margin-top:40px;
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff4081;
+cursor:pointer;
+font-weight:bold;
+}
+
+.heart,.confetti{
+position:absolute;
+pointer-events:none;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 10px white;
+}
+to{
+text-shadow:0 0 40px yellow,0 0 70px white;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎉 Happy Birthday 🎉</h1>
+
+<h2>Swapna S. Poojary (Baba) ❤️</h2>
+
+<p>
+
+May this birthday bring you endless happiness,
+beautiful memories,
+good health,
+success,
+peace,
+and countless reasons to smile.
+
+Never stop believing in yourself.
+
+Keep shining.
+
+Keep smiling.
+
+Today is your day.
+
+Enjoy every single moment.
+
+🎂❤️ Happy Birthday! ❤️🎂
+
+</p>
+
+<button onclick="location.href='index.html'">
+
+🔄 Replay Surprise
+
+</button>
+
+</div>
+
+<script>
+
+function createHearts(){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*25)+"px";
+
+h.style.animationDuration=(4+Math.random()*3)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),7000);
+
+}
+
+function createConfetti(){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+let arr=["🎉","✨","⭐","💖","🎊"];
+
+c.innerHTML=arr[Math.floor(Math.random()*arr.length)];
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.fontSize=(18+Math.random()*18)+"px";
+
+c.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),6000);
+
+}
+
+setInterval(createHearts,250);
+
+setInterval(createConfetti,180);
+
+</script>
+
+</body>
+</html>
