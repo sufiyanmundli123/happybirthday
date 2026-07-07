@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>30 Reasons ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#ff9ec7,#ffd6e8,#fff5fa);
+overflow:hidden;
+text-align:center;
+
+}
+
+.card{
+
+width:90%;
+max-width:650px;
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 0 30px rgba(0,0,0,.2);
+
+}
+
+h1{
+
+color:#ff0066;
+margin-bottom:20px;
+
+}
+
+#count{
+
+font-size:18px;
+margin-bottom:20px;
+color:#666;
+
+}
+
+#reason{
+
+font-size:28px;
+min-height:150px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#444;
+line-height:1.6;
+
+}
+
+button{
+
+margin-top:25px;
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>💖 30 Beautiful Wishes 💖</h1>
+
+<div id="count">
+
+Wish 1 / 30
+
+</div>
+
+<div id="reason">
+
+May your smile always shine brighter than today. ❤️
+
+</div>
+
+<button id="next">
+
+Next ❤️
+
+</button>
+
+</div>
+
+<script>
+
+const reasons=[
+
+"May your smile always shine brighter than today. ❤️",
+"May happiness follow you everywhere.",
+"May every dream become reality.",
+"Stay healthy and keep smiling.",
+"You deserve endless love.",
+"May your future be bright.",
+"Never stop believing in yourself.",
+"You make people happy.",
+"Keep spreading kindness.",
+"Stay as wonderful as you are.",
+"May success always find you.",
+"Keep shining every day.",
+"Enjoy every beautiful moment.",
+"May laughter fill your life.",
+"You are truly special.",
+"Keep your beautiful heart forever.",
+"Stay positive always.",
+"May today be unforgettable.",
+"Always be proud of yourself.",
+"Never stop dreaming.",
+"Life becomes brighter with your smile.",
+"May all your wishes come true.",
+"Keep inspiring everyone.",
+"Every year makes you more amazing.",
+"Stay blessed forever.",
+"Enjoy every little happiness.",
+"Your smile is priceless.",
+"May this year bring wonderful memories.",
+"Happy Birthday once again! ❤️",
+"The best surprise is still waiting... 🎁"
+
+];
+
+let i=0;
+
+const reason=document.getElementById("reason");
+const count=document.getElementById("count");
+const btn=document.getElementById("next");
+
+btn.onclick=function(){
+
+i++;
+
+if(i<reasons.length){
+
+reason.innerHTML=reasons[i];
+
+count.innerHTML="Wish "+(i+1)+" / 30";
+
+}
+
+else{
+
+window.location.href="final.html";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

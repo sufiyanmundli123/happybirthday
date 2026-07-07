@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Treasure Chest</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#2b1055,#7597de);
+overflow:hidden;
+text-align:center;
+color:white;
+}
+
+.container{
+padding:20px;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.chest{
+font-size:120px;
+cursor:pointer;
+transition:.4s;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+.sparkle{
+position:absolute;
+font-size:24px;
+animation:fall 2s linear forwards;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-30px);
+opacity:1;
+}
+100%{
+transform:translateY(350px);
+opacity:0;
+}
+}
+
+#message{
+display:none;
+margin-top:30px;
+font-size:24px;
+line-height:1.7;
+}
+
+button{
+display:none;
+margin-top:30px;
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💎 Secret Treasure 💎</h1>
+
+<div class="chest" id="chest">
+📦
+</div>
+
+<div id="message">
+
+✨ Congratulations! ✨
+
+<br><br>
+
+Today the biggest treasure isn't gold...
+
+<br><br>
+
+It's your beautiful smile. ❤️
+
+</div>
+
+<button id="nextBtn">
+
+One More Surprise ➜
+
+</button>
+
+</div>
+
+<script>
+
+const chest=document.getElementById("chest");
+
+const msg=document.getElementById("message");
+
+const next=document.getElementById("nextBtn");
+
+chest.onclick=function(){
+
+chest.innerHTML="🎁";
+
+chest.style.transform="scale(1.2)";
+
+for(let i=0;i<40;i++){
+
+let s=document.createElement("div");
+
+s.className="sparkle";
+
+s.innerHTML=["✨","💖","⭐","🎉"][Math.floor(Math.random()*4)];
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*100+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),2000);
+
+}
+
+msg.style.display="block";
+
+next.style.display="inline-block";
+
+}
+
+next.onclick=function(){
+
+window.location.href="reasons.html";
+
+}
+
+</script>
+
+</body>
+</html>

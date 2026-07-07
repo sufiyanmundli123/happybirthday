@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catch the Hearts ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff9ec7,#ffd6e8,#fff5fa);
+overflow:hidden;
+height:100vh;
+text-align:center;
+}
+
+h1{
+margin-top:20px;
+color:#ff0066;
+}
+
+p{
+font-size:18px;
+margin-top:10px;
+color:#444;
+}
+
+#score{
+font-size:24px;
+margin-top:15px;
+font-weight:bold;
+color:#ff0066;
+}
+
+.heart{
+position:absolute;
+font-size:40px;
+cursor:pointer;
+animation:floatUp 5s linear forwards;
+user-select:none;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(-120px);
+opacity:0;
+}
+}
+
+#message{
+display:none;
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+color:#ff0066;
+}
+
+button{
+display:none;
+margin-top:25px;
+padding:15px 35px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+font-size:20px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>❤️ Catch Every Heart ❤️</h1>
+
+<p>Tap all 15 hearts to unlock your next surprise!</p>
+
+<div id="score">0 / 15</div>
+
+<div id="message">
+🎉 Amazing! You caught every heart! ❤️
+</div>
+
+<button id="nextBtn">
+Open Next Surprise 🎁
+</button>
+
+<script>
+
+let total=15;
+let caught=0;
+
+const compliments=[
+"🌹 Beautiful Smile",
+"💖 Stay Happy",
+"😊 Keep Shining",
+"✨ Believe In Yourself",
+"❤️ You're Amazing",
+"🌸 Stay Blessed",
+"🎂 Happy Birthday",
+"🌈 Endless Joy"
+];
+
+function createHeart(){
+
+if(caught>=total) return;
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*90+"vw";
+
+heart.onclick=function(){
+
+caught++;
+
+document.getElementById("score").innerHTML=
+caught+" / "+total;
+
+heart.remove();
+
+let msg=document.createElement("div");
+
+msg.style.position="absolute";
+msg.style.left=heart.style.left;
+msg.style.top="50%";
+msg.style.fontSize="20px";
+msg.style.color="#ff0066";
+msg.innerHTML=
+compliments[Math.floor(Math.random()*compliments.length)];
+
+document.body.appendChild(msg);
+
+setTimeout(()=>msg.remove(),1200);
+
+if(caught==total){
+
+document.getElementById("message").style.display="block";
+
+document.getElementById("nextBtn").style.display="inline-block";
+
+}
+
+}
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+if(document.body.contains(heart))
+
+heart.remove();
+
+},5000);
+
+}
+
+setInterval(createHeart,700);
+
+document.getElementById("nextBtn").onclick=function(){
+
+window.location.href="treasure.html";
+
+}
+
+</script>
+
+</body>
+</html>
