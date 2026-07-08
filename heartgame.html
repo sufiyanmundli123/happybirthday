@@ -3,50 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catch the Hearts ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Catch 5 Hearts ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Poppins,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#ff9ec7,#ffd6e8,#fff5fa);
-overflow:hidden;
+background:linear-gradient(135deg,#ff8fb1,#ffc1d6,#fff5f9);
 height:100vh;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
 text-align:center;
 }
 
 h1{
-margin-top:20px;
+margin-top:25px;
 color:#ff0066;
+font-size:32px;
+text-shadow:0 0 10px rgba(255,0,100,.3);
 }
 
 p{
-font-size:18px;
 margin-top:10px;
+font-size:18px;
 color:#444;
 }
 
 #score{
-font-size:24px;
-margin-top:15px;
+margin-top:18px;
+font-size:28px;
 font-weight:bold;
 color:#ff0066;
 }
 
+.progress{
+width:280px;
+height:18px;
+background:#ffd6e8;
+border-radius:30px;
+margin-top:18px;
+overflow:hidden;
+box-shadow:0 0 10px rgba(255,0,100,.25);
+}
+
+#bar{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#ff4081,#ff80ab);
+transition:.4s;
+}
+
 .heart{
 position:absolute;
-font-size:40px;
 cursor:pointer;
-animation:floatUp 5s linear forwards;
 user-select:none;
+animation:floatUp 5s linear forwards,wiggle 1.5s ease-in-out infinite;
+filter:drop-shadow(0 0 10px #ff5fa2);
 }
 
 @keyframes floatUp{
@@ -58,65 +81,128 @@ opacity:0;
 opacity:1;
 }
 100%{
-transform:translateY(-120px);
+transform:translateY(-150px);
 opacity:0;
+}
+}
+
+@keyframes wiggle{
+0%{margin-left:0;}
+25%{margin-left:-10px;}
+50%{margin-left:10px;}
+75%{margin-left:-6px;}
+100%{margin-left:0;}
+}
+
+.popup{
+position:absolute;
+font-size:22px;
+font-weight:bold;
+color:#ff0066;
+animation:fade 1.2s forwards;
+pointer-events:none;
+}
+
+@keyframes fade{
+0%{
+opacity:1;
+transform:translateY(0);
+}
+100%{
+opacity:0;
+transform:translateY(-60px);
 }
 }
 
 #message{
 display:none;
-margin-top:20px;
-font-size:22px;
+margin-top:25px;
+font-size:24px;
 font-weight:bold;
 color:#ff0066;
+animation:pop .7s ease;
+}
+
+@keyframes pop{
+0%{
+transform:scale(.5);
+opacity:0;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
 }
 
 button{
 display:none;
 margin-top:25px;
-padding:15px 35px;
+padding:15px 40px;
 border:none;
-border-radius:30px;
-background:#ff4081;
+border-radius:40px;
+background:linear-gradient(45deg,#ff0066,#ff66a3);
 color:white;
 font-size:20px;
 cursor:pointer;
+box-shadow:0 8px 20px rgba(255,0,102,.35);
+transition:.3s;
 }
 
+button:hover{
+transform:scale(1.08);
+}
+
+.confetti{
+position:absolute;
+top:-20px;
+animation:fall 4s linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(720deg);
+opacity:0;
+}
+}
 </style>
 
 </head>
-
 <body>
 
-<h1>❤️ Catch Every Heart ❤️</h1>
+<h1>💖 Catch the Hearts 💖</h1>
 
-<p>Tap all 15 hearts to unlock your next surprise!</p>
+<p>Catch all <b>5 magical hearts</b> to unlock your surprise! ✨</p>
 
-<div id="score">0 / 15</div>
+<div id="score">0 / 5</div>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
 
 <div id="message">
-🎉 Amazing! You caught every heart! ❤️
+🎉 You caught every heart! 💖<br>
+Your surprise is ready... ❤️
 </div>
 
 <button id="nextBtn">
-Open Next Surprise 🎁
+Open Surprise 🎁
 </button>
 
 <script>
 
-let total=15;
+let total=5;
 let caught=0;
 
 const compliments=[
-"🌹 Beautiful Smile",
-"💖 Stay Happy",
-"😊 Keep Shining",
-"✨ Believe In Yourself",
-"❤️ You're Amazing",
-"🌸 Stay Blessed",
-"🎂 Happy Birthday",
-"🌈 Endless Joy"
+"🌹 Beautiful!",
+"💖 Cute!",
+"😍 Lovely!",
+"✨ Amazing!",
+"🥰 Sweet!",
+"💕 Gorgeous!",
+"😊 Perfect!",
+"❤️ My Favorite!"
 ];
 
 function createHeart(){
@@ -131,30 +217,35 @@ heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*90+"vw";
 
+heart.style.fontSize=(35+Math.random()*25)+"px";
+
 heart.onclick=function(){
 
 caught++;
 
-document.getElementById("score").innerHTML=
-caught+" / "+total;
+document.getElementById("score").innerHTML=caught+" / "+total;
+
+document.getElementById("bar").style.width=(caught/total*100)+"%";
+
+let popup=document.createElement("div");
+
+popup.className="popup";
+
+popup.style.left=heart.style.left;
+
+popup.style.top="45%";
+
+popup.innerHTML=compliments[Math.floor(Math.random()*compliments.length)];
+
+document.body.appendChild(popup);
+
+setTimeout(()=>popup.remove(),1200);
 
 heart.remove();
 
-let msg=document.createElement("div");
+if(caught===total){
 
-msg.style.position="absolute";
-msg.style.left=heart.style.left;
-msg.style.top="50%";
-msg.style.fontSize="20px";
-msg.style.color="#ff0066";
-msg.innerHTML=
-compliments[Math.floor(Math.random()*compliments.length)];
-
-document.body.appendChild(msg);
-
-setTimeout(()=>msg.remove(),1200);
-
-if(caught==total){
+celebrate();
 
 document.getElementById("message").style.display="block";
 
@@ -169,14 +260,37 @@ document.body.appendChild(heart);
 setTimeout(()=>{
 
 if(document.body.contains(heart))
-
 heart.remove();
 
 },5000);
 
 }
 
-setInterval(createHeart,700);
+function celebrate(){
+
+const emojis=["🎉","✨","💖","🌸","💕"];
+
+for(let i=0;i<80;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.fontSize=(18+Math.random()*18)+"px";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),4000);
+
+}
+
+}
+
+setInterval(createHeart,900);
 
 document.getElementById("nextBtn").onclick=function(){
 
