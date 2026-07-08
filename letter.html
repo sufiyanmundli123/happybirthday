@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Letter ❤️</title>
 
-<title>Love Letter</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,41 +14,134 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Poppins,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-
 height:100vh;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
-background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-
 overflow:hidden;
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+position:relative;
+}
 
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Floating Blur Circles */
+
+.blur{
+position:absolute;
+border-radius:50%;
+filter:blur(80px);
+opacity:.45;
+animation:float 8s ease-in-out infinite;
+}
+
+.blur1{
+width:250px;
+height:250px;
+background:#ff5e9c;
+top:-80px;
+left:-80px;
+}
+
+.blur2{
+width:300px;
+height:300px;
+background:#7b5cff;
+bottom:-120px;
+right:-100px;
+animation-delay:3s;
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-40px);
+}
 }
 
 .container{
 
-width:90%;
-max-width:700px;
+width:92%;
+max-width:760px;
 
-background:white;
+padding:45px;
 
-padding:40px;
+background:rgba(255,255,255,.18);
 
-border-radius:25px;
+backdrop-filter:blur(20px);
 
-box-shadow:0 0 40px rgba(0,0,0,.25);
+border:1px solid rgba(255,255,255,.35);
+
+border-radius:30px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.25);
 
 text-align:center;
 
 position:relative;
+
+animation:fadeIn 1.5s;
+overflow:hidden;
+
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.container::before{
+
+content:"";
+
+position:absolute;
+
+top:-50%;
+
+left:-50%;
+
+width:200%;
+
+height:200%;
+
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+
+transform:rotate(25deg);
+
+animation:shine 7s linear infinite;
+
+}
+
+@keyframes shine{
+
+0%{
+transform:translateX(-120%) rotate(25deg);
+}
+
+100%{
+transform:translateX(120%) rotate(25deg);
+}
 
 }
 
@@ -58,11 +149,27 @@ h1{
 
 font-family:'Dancing Script',cursive;
 
-font-size:50px;
+font-size:56px;
 
-color:#ff4081;
+color:white;
 
-margin-bottom:25px;
+text-shadow:0 0 20px rgba(255,255,255,.8);
+
+margin-bottom:30px;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%,100%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.05);
+}
 
 }
 
@@ -70,11 +177,15 @@ margin-bottom:25px;
 
 font-size:22px;
 
-line-height:1.8;
+line-height:1.9;
 
-color:#444;
+color:white;
 
-min-height:250px;
+min-height:280px;
+
+white-space:pre-wrap;
+
+text-shadow:0 2px 5px rgba(0,0,0,.3);
 
 }
 
@@ -82,21 +193,39 @@ button{
 
 display:none;
 
-margin-top:30px;
+margin-top:35px;
 
-padding:15px 40px;
-
-border:none;
-
-border-radius:30px;
-
-background:#ff4081;
-
-color:white;
+padding:16px 45px;
 
 font-size:20px;
 
+border:none;
+
+border-radius:50px;
+
 cursor:pointer;
+
+font-weight:600;
+
+color:white;
+
+background:linear-gradient(45deg,#ff4081,#ff6ec7,#ff4081);
+
+background-size:200%;
+
+transition:.4s;
+
+box-shadow:0 10px 30px rgba(255,64,129,.45);
+
+}
+
+button:hover{
+
+background-position:right;
+
+transform:translateY(-4px) scale(1.05);
+
+box-shadow:0 20px 40px rgba(255,64,129,.6);
 
 }
 
@@ -104,36 +233,90 @@ cursor:pointer;
 
 position:absolute;
 
-font-size:22px;
+font-size:26px;
+
+pointer-events:none;
 
 animation:fall linear forwards;
 
-pointer-events:none;
+filter:drop-shadow(0 0 8px white);
 
 }
 
 @keyframes fall{
 
 0%{
-transform:translateY(-50px);
+transform:translateY(-60px) rotate(0deg);
 opacity:1;
 }
 
 100%{
-
-transform:translateY(110vh);
-
+transform:translateY(110vh) rotate(360deg);
 opacity:0;
+}
 
+}
+
+.sparkle{
+
+position:absolute;
+
+width:5px;
+
+height:5px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.8;
+
+animation:twinkle 2s infinite;
+
+}
+
+@keyframes twinkle{
+
+0%,100%{
+transform:scale(.3);
+opacity:.2;
+}
+
+50%{
+transform:scale(1.5);
+opacity:1;
+}
+
+}
+
+@media(max-width:600px){
+
+.container{
+padding:28px;
+}
+
+h1{
+font-size:42px;
+}
+
+#text{
+font-size:18px;
+}
+
+button{
+font-size:18px;
+padding:14px 35px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
 
 <div class="container">
 
@@ -141,84 +324,192 @@ opacity:0;
 
 <div id="text"></div>
 
-<button id="nextBtn">
-
-Next Surprise ❤️
-
-</button>
+<button id="nextBtn">Next Surprise ❤️</button>
 
 </div>
-
 <script>
 
-const message=
+const message=`Happy Birthday, Choba Baba! ❤️
 
-`Happy Birthday, choba Baba! ❤️
-
-Today is all about celebrating you.
+Today is all about celebrating the most beautiful person in my life.
 
 May your smile always stay bright,
-your heart always stay happy,
-and every dream you have come true.
+your heart always stay full of happiness,
+and every dream you wish for come true.
 
-Keep believing in yourself,
-keep shining,
-and never stop smiling.
+You deserve endless love,
+countless beautiful memories,
+and a lifetime filled with laughter.
 
-Enjoy your special day.
+Never stop believing in yourself,
+never stop shining,
+because you make this world a little more beautiful just by being in it.
 
-Happy Birthday once again! 🎂❤️`;
+May Allah bless you with good health,
+peace, happiness, and success in every step of your life.
 
-let i=0;
+Thank you for being so special.
 
-function type(){
+Happy Birthday once again, my dear. 🎂❤️`;
 
-if(i<message.length){
+let i = 0;
+const text = document.getElementById("text");
 
-document.getElementById("text").innerHTML+=message.charAt(i);
+function typeWriter(){
 
-i++;
+    if(i < message.length){
 
-setTimeout(type,45);
+        text.innerHTML += message.charAt(i);
+
+        i++;
+
+        setTimeout(typeWriter,40);
+
+    }else{
+
+        showButton();
+
+        confettiBurst();
+
+    }
 
 }
 
-else{
+typeWriter();
 
-document.getElementById("nextBtn").style.display="inline-block";
+function showButton(){
+
+    const btn=document.getElementById("nextBtn");
+
+    btn.style.display="inline-block";
+
+    btn.animate([
+
+        {opacity:0,transform:"scale(.5)"},
+
+        {opacity:1,transform:"scale(1.08)"},
+
+        {opacity:1,transform:"scale(1)"}
+
+    ],{
+
+        duration:700,
+
+        fill:"forwards"
+
+    });
 
 }
-
-}
-
-type();
-
-setInterval(function(){
-
-let h=document.createElement("div");
-
-h.className="heart";
-
-h.innerHTML="❤️";
-
-h.style.left=Math.random()*100+"vw";
-
-h.style.animationDuration=(4+Math.random()*3)+"s";
-
-document.body.appendChild(h);
-
-setTimeout(()=>h.remove(),7000);
-
-},350);
 
 document.getElementById("nextBtn").onclick=function(){
 
-window.location.href="wheel.html";
+    window.location.href="wheel.html";
+
+};
+
+// Floating Hearts
+
+setInterval(()=>{
+
+    let heart=document.createElement("div");
+
+    heart.className="heart";
+
+    const hearts=["❤️","💖","💕","💗","💘"];
+
+    heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.animationDuration=(4+Math.random()*3)+"s";
+
+    heart.style.fontSize=(20+Math.random()*25)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),7000);
+
+},250);
+
+// Sparkles
+
+for(let i=0;i<60;i++){
+
+    let star=document.createElement("div");
+
+    star.className="sparkle";
+
+    star.style.left=Math.random()*100+"vw";
+
+    star.style.top=Math.random()*100+"vh";
+
+    star.style.animationDelay=Math.random()*2+"s";
+
+    star.style.animationDuration=(1+Math.random()*3)+"s";
+
+    document.body.appendChild(star);
+
+}
+
+// Confetti
+
+function confettiBurst(){
+
+    for(let i=0;i<80;i++){
+
+        let conf=document.createElement("div");
+
+        conf.innerHTML=["🎉","✨","🎊","💖"][Math.floor(Math.random()*4)];
+
+        conf.style.position="fixed";
+
+        conf.style.left="50%";
+
+        conf.style.top="45%";
+
+        conf.style.fontSize=(18+Math.random()*18)+"px";
+
+        conf.style.pointerEvents="none";
+
+        document.body.appendChild(conf);
+
+        let x=(Math.random()-0.5)*700;
+
+        let y=(Math.random()-0.5)*700;
+
+        conf.animate([
+
+            {
+
+                transform:"translate(0,0) scale(1)",
+
+                opacity:1
+
+            },
+
+            {
+
+                transform:`translate(${x}px,${y}px) rotate(${Math.random()*720}deg)`,
+
+                opacity:0
+
+            }
+
+        ],{
+
+            duration:2200,
+
+            easing:"ease-out"
+
+        });
+
+        setTimeout(()=>conf.remove(),2200);
+
+    }
 
 }
 
 </script>
 
 </body>
-
 </html>
